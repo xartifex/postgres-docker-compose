@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+    local-postgres:  
+      container_name: ${DB_CONTAINER_NAME}
+      build: 
+        context: ./db          
+        args:            
+            DB_POSTGRES_SCHEMA: ${DB_POSTGRES_SCHEMA}       
+            DB_POSTGRES_USER: ${DB_POSTGRES_USER}
+      ports:
+        - "${DB_HOST_PORT}:${DB_CONTAINER_PORT}"
+      restart: always
+      environment:
+        POSTGRES_DB: ${DB_POSTGRES_DB}
+        POSTGRES_USER: ${DB_POSTGRES_USER}
+        POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD}
